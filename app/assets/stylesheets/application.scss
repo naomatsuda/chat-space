@@ -1,0 +1,31 @@
+@import "variable";
+@import "reset";
+@import "font-size";
+@import "mixins/mixin";
+@import "mixins/vendor_prefix";
+@import "modules/side_bar";
+@import "modules/chat";
+
+@import "font-awesome";
+
+// *{
+//   box-sizing: border-box;
+// }
+
+// @mixin clearfix{
+//   &:after{
+//     content: "";
+//     clear: both;
+//     display: block;
+//   }
+// }
+
+// $prefixes: -webkit-, -moz-, -ms-, -o-, '';
+
+// @mixin flexbox {
+//   @each $prefix in $prefixes {
+//     display: #{$prefix}flex;
+//   }
+// }
+
+
