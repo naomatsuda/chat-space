@@ -1,7 +1,7 @@
 
 # DB設計
 
-## groups_users table
+## messages table
 
 |Column|Type|Options|
 |------|----|-------|
@@ -23,6 +23,7 @@
 ### Association
 - has_many :GroupsUsers
 - has_many :users, through: :groups_users
+- has_many :messages
 
 ## users table
 
@@ -35,6 +36,7 @@
 ### Association
 - has_many :GroupsUsers
 - has_many :groups, through: :groups_users
+- has_many :messages
 
 ## groups_users table
 
@@ -70,4 +72,4 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ... -->
+-->
