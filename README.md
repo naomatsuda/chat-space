@@ -3,47 +3,47 @@
 
 ## messages table
 
-|Column|Type|Options|
-|------|----|-------|
-|body|text|null: false|
-|image|string||
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|Column|Type      |Options                       |
+|------|----------|------------------------------|
+|body  |text      |                              |
+|image |string    |                              |
+|user  |references|null: false, foreign_key: true|
+|group |references|null: false, foreign_key: true|
 
 ### Association
-- has_many :user
-- has_many :group
+- belongs_to :user
+- belongs_to :group
 
 ## groups table
 
-|Column|Type|Options|
-|------|----|-------|
-|name|text|null: false|
+|Column|Type|Options                 |
+|------|----|------------------------|
+|name  |text|null: false, index: true|
 
 ### Association
-- has_many :GroupsUsers
+- has_many :groups_users
 - has_many :users, through: :groups_users
 - has_many :messages
 
 ## users table
 
-|Column|Type|Options|
-|------|----|-------|
-|name|text|null: false|
-|email|text|null: false|
+|Column  |Type|Options    |
+|--------|----|-----------|
+|name    |text|null: false|
+|email   |text|null: false|
 |password|text|null: false|
 
 ### Association
-- has_many :GroupsUsers
+- has_many :groups_users
 - has_many :groups, through: :groups_users
 - has_many :messages
 
 ## groups_users table
 
-|Column|Type|Options|
-|------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|Column|Type      |Options                       |
+|------|----------|------------------------------|
+|user  |references|null: false, foreign_key: true|
+|group |references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :group
