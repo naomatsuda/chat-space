@@ -4,4 +4,5 @@ $prefixes: -webkit-, -moz-, -ms-, -o-, '';
   @each $prefix in $prefixes {
     display: #{$prefix}flex;
   }
+
 }
