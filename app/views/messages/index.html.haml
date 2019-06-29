@@ -1,91 +1,26 @@
-.flash-box
 .wapper
-  .chat-side
-    .side-headder
-      .side-headder__box
-        %p.side-headder__box__name ss 
-        %ul.side-headder__box__user-menu
-          %li.side-headder__box__user-menu__icon
-            =link_to root_path do
-              %i.fa.fa-edit
-          %li.side-headder__box__user-menu__icon
-            =link_to root_path do
-              %i.fa.fa-cog
-    .groups
-      %a
-        =link_to root_path do
-          .group
-            %p.group__name みそ
-            %p.group__message 大豆と塩
+
+  = render '/layouts/shared/chat-side'
+
   .chat-main
     .main-headder
       .current-group
         %h2.current-group__name
-          pp
+          = @group.name
         %ul.member-list 
           Member : 
-          %li.member-list__member rr
-          %li.member-list__member oo
-      %a{:href => '/'}
+          %li.member-list__member
+            - @group.users.each do |user|
+              = user.name
+      = link_to edit_group_path(@group) do
         .main-headder__edit-btn Edit
     .messages
-      .message
-        .message__uper-info
-          .message__uper-info__talker qq
-          .message__uper-info__date 20190202
-        %p.message__text 作り方
+      = render @messages
     .form
-      %form.new-message#new-message{:enctype => "multipart/form-data", :action => "/", :accept-charset => "UTF-8", :method => "post"}
-        %input{:name => "utf8", :type => "hidden", :value => "✔︎"}
-        %input{:type => "hidden", :name => "authenticity", :value => "01AaSVZIMCk2VDP2VOQd+AlH5VA6Gj62OP7jxWJNwi570HkHdBf+7JQogFKKZZcF+zUYwJ1RciyCvD8KGTvl+w=="}
-        .input-box
-          %input.input-box__text{:placeholder => "type a message", :type => "text", :name => "message[content]"}
-          %label.input-box__image{:for => "massage_image"}
-            %i.fa.fa-image
-            %input.input-box__image__file#message_image{:type => "file", :name => "message[image]"}
-        %input.submit-btn{:type => "submit", :name => "commit", :value =>"Send", :data-disable-with => "Send"}
-
-  -# .wapper
-  -#   .chat-side
-  -#     .side-headder
-  -#       .side-headder__box
-  -#         %p.side-headder__box__name
-  -#         %ul
-  -#           %li.side-headder__box__menu__edit-user
-  -#             =link_to root_path do
-  -#               %i.fa.fa-edit
-  -#           %li.side-headder__box__menu__new-group
-  -#             =link_to root_path do
-  -#               %i.fa.fa-cog
-  -#     .groups
-  -#       %a
-  -#         =link_to root_path do
-  -#           .group
-  -#             %P.group-name みそ
-  -#             %p.latest-message 大豆と塩
-  -#   .chat-main
-  -#     .main-headder
-  -#       .main-headder__left-box
-  -#         %h2.main-headder__left-box__current-group
-  -#         %ul
-  -#           %li Member:
-  -#           %li.member-list__member rr
-  -#           %li.member-list__member oo
-  -#       %a{:href => '/'}
-  -#         .main-headder__edit-btn Edit
-  -#     .messages
-  -#       .message__uper-info
-  -#         .message__uper-info__talker
-  -#         .message__uper-info__date
-  -#       %p.message__text 作り方
-  -#     .form
-  -#       %form.new-message#new-message{}
-  -#         %input{}
-  -#         %input{}
-  -#       .input-box
-  -#         %input{}
-  -#         %label.input-box__image{}
-  -#           %i.fa.fa-image
-  -#           %input.input-box__image__file{}
-  -#         %input.submit-btn{}
-
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__text', placeholder: "type a message"
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
