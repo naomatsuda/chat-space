@@ -33,17 +33,22 @@ $(function(){
       processData: false,
       contentType: false
     })   
-    .done(function(data){
-      var html = buildHTML(data);
+    .done(function(message){
+      var html = buildHTML(message);
       $('.message').append(html)
       $('.form__text').val('')
-      var ojheight = $('.messages').height();
-      $('.messages').animate({scrollTop: ojheight});
+      function scrollBottom(){
+        var target = $('.message').last();
+        var position = target.offset().top + $('.messages').scrollTop();
+        $('.messages').animate({
+          scrollTop: position
+        })
+      }
     })
     .fail(function(){
       alert('error');
     })
-    .always(function(data){
+    .always(function(message){
       $('.form__submit').prop('disabled', false);
     })
   })
