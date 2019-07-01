@@ -18,18 +18,6 @@ $(function(){
                       ${img}
                   </p>
                 </div>` 
-                // 以下、元のhaml        
-                // .message
-                //   .message__uper-info
-                //     .message__uper-info__talker
-                //       = message.user.name
-                //     .message__uper-info__date
-                //       = message.created_at.strftime("%Y/%m/%d %H:%M")
-                //   %p.message__text
-                //     - if message.content.present?
-                //       %p.lower-message__content
-                //         = message.content
-                //     = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
     return html;
   }
   $('#new_message').on('submit', function(e){
