@@ -89,7 +89,7 @@
     background-color: #38aef0;
   }
 
-  .field-label {
+  &-label {
     .field_with_errors {
       display: inline-block;
       color: #d65f4c;
@@ -97,7 +97,7 @@
     }
   }
 
-  .field-input {
+  &-input {
     .field_with_errors {
       position: relative;
 
